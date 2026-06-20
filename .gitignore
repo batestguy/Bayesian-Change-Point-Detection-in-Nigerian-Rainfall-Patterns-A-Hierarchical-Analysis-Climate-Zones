@@ -1,0 +1,63 @@
+# Python
+__pycache__/
+*.py[cod]
+*$py.class
+*.egg-info/
+dist/
+build/
+*.egg
+.eggs/
+
+# Environments
+.env
+.venv/
+env/
+venv/
+*.conda
+*.virtualenv
+
+# Jupyter
+.ipynb_checkpoints/
+*.ipynb_output/
+
+# IDE
+.idea/
+.vscode/
+*.swp
+*.swo
+*~
+.project
+.settings/
+
+# Claude Code local settings
+.claude/
+
+# Colab output duplicates (originals live in data/ and figures/)
+mcmc_extracted/
+mcmc_output.zip
+
+# OS
+.DS_Store
+Thumbs.db
+desktop.ini
+
+# LaTeX auxiliary
+paper/*.aux
+paper/*.bbl
+paper/*.blg
+paper/*.log
+paper/*.out
+paper/*.synctex.gz
+paper/*.fdb_latexmk
+paper/*.fls
+paper/*.toc
+paper/*.lof
+paper/*.lot
+paper/*.nav
+paper/*.snm
+paper/*.vrb
+
+# Large data files (keep raw cached JSON and traces)
+# Uncomment below if you want to exclude large files:
+# data/raw/*.json
+# data/traces/*.nc

@@ -1,0 +1,11 @@
+pymc>=5.8.0
+arviz>=0.16.1
+bambi>=0.13.0
+pandas>=1.5.0
+numpy>=1.24.0
+xarray>=2023.1.0
+matplotlib>=3.7.0
+scipy>=1.10.0
+pytensor>=2.14.0
+python-docx>=0.8.11
+daft>=0.1.2
