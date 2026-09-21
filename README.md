@@ -41,33 +41,33 @@ Data source: [Open-Meteo Historical Weather API](https://open-meteo.com/) (ERA5 
 
 ```
 .
-├── data/
-│   ├── raw/                          # Cached Open-Meteo API JSON responses (9 cities x 8 decades)
-│   ├── traces/                       # MCMC NetCDF trace files (14 files)
-│   ├── rainfall_daily.csv            # Consolidated daily precipitation
-│   ├── annual_city_rainfall.csv      # Annual totals per city
-│   ├── annual_zone_rainfall.csv      # Annual zone-level means
-│   └── monthly_zone_rainfall.csv     # Monthly zone-level means
-├── figures/                          # Publication-quality PDF/PNG figures
-├── notebooks/                        # Numbered analysis scripts (run sequentially)
-│   ├── 01_data_acquisition.py        # Fetch data from Open-Meteo API
-│   ├── 02_data_processing.py         # Clean, interpolate, aggregate
-│   ├── 03_eda.py                     # Exploratory data analysis & plots
-│   ├── 04_single_changepoint.py      # Per-zone single change-point model (PyMC)
-│   ├── 05_hierarchical_model.py      # Hierarchical Bayesian model
-│   ├── 06_model_comparison.py        # Null vs 1-CP vs 2-CP (LOO-IC, WAIC)
-│   ├── 07_paper_figures.py           # Generate all publication figures
-│   └── 08_model_diagram.py           # Kruschke-style PGM plate diagram
-├── paper/
-│   ├── main.tex                      # IEEEtran LaTeX source
-│   └── references.bib                # BibTeX references (18 entries)
-├── src/
-│   └── utils.py                      # Shared utilities (zones, API, IEEE style)
-├── colab_mcmc_combined.py            # Self-contained Colab MCMC script
-├── create_word_paper.py              # Generate Word doc with embedded figures
-├── requirements.txt                  # Python dependencies
-├── LICENSE
-└── README.md
+â”œâ”€â”€ data/
+â”‚   â”œâ”€â”€ raw/                          # Cached Open-Meteo API JSON responses (9 cities x 8 decades)
+â”‚   â”œâ”€â”€ traces/                       # MCMC NetCDF trace files (14 files)
+â”‚   â”œâ”€â”€ rainfall_daily.csv            # Consolidated daily precipitation
+â”‚   â”œâ”€â”€ annual_city_rainfall.csv      # Annual totals per city
+â”‚   â”œâ”€â”€ annual_zone_rainfall.csv      # Annual zone-level means
+â”‚   â””â”€â”€ monthly_zone_rainfall.csv     # Monthly zone-level means
+â”œâ”€â”€ figures/                          # Publication-quality PDF/PNG figures
+â”œâ”€â”€ notebooks/                        # Numbered analysis scripts (run sequentially)
+â”‚   â”œâ”€â”€ 01_data_acquisition.py        # Fetch data from Open-Meteo API
+â”‚   â”œâ”€â”€ 02_data_processing.py         # Clean, interpolate, aggregate
+â”‚   â”œâ”€â”€ 03_eda.py                     # Exploratory data analysis & plots
+â”‚   â”œâ”€â”€ 04_single_changepoint.py      # Per-zone single change-point model (PyMC)
+â”‚   â”œâ”€â”€ 05_hierarchical_model.py      # Hierarchical Bayesian model
+â”‚   â”œâ”€â”€ 06_model_comparison.py        # Null vs 1-CP vs 2-CP (LOO-IC, WAIC)
+â”‚   â”œâ”€â”€ 07_paper_figures.py           # Generate all publication figures
+â”‚   â””â”€â”€ 08_model_diagram.py           # Kruschke-style PGM plate diagram
+â”œâ”€â”€ paper/
+â”‚   â”œâ”€â”€ main.tex                      # IEEEtran LaTeX source
+â”‚   â””â”€â”€ references.bib                # BibTeX references (18 entries)
+â”œâ”€â”€ src/
+â”‚   â””â”€â”€ utils.py                      # Shared utilities (zones, API, IEEE style)
+â”œâ”€â”€ colab_mcmc_combined.py            # Self-contained Colab MCMC script
+â”œâ”€â”€ create_word_paper.py              # Generate Word doc with embedded figures
+â”œâ”€â”€ requirements.txt                  # Python dependencies
+â”œâ”€â”€ LICENSE
+â””â”€â”€ README.md
 ```
 
 ---
@@ -179,6 +179,42 @@ The pipeline produces 7 publication-quality figures:
 | Fig. 7 | Kruschke-style PGM plate diagram | `fig_model_diagram` |
 
 All figures are saved as both PDF (for LaTeX) and PNG (for Word/web).
+
+### Figure gallery
+
+The key results are shown below using the PNG figures already included in this
+repository. GitHub renders these images directly from the `figures/` folder.
+
+#### Study area and estimated rainfall change-points
+
+<p align="center">
+  <img src="figures/fig1_study_area.png" alt="Map of Nigeria showing the Sahel, Guinea Savanna, and Coastal/Rainforest climate zones with nine rainfall stations" width="48%">
+  <img src="figures/fig2_changepoint_timeseries.png" alt="Annual precipitation time series for the three climate zones with Bayesian change-point estimates" width="48%">
+</p>
+
+<p align="center"><em>Left: study area and station locations. Right: annual precipitation and posterior change-point distributions.</em></p>
+
+#### Bayesian diagnostics and model validation
+
+<p align="center">
+  <img src="figures/fig3_trace_plots.png" alt="MCMC trace plots used to assess sampling convergence" width="48%">
+  <img src="figures/fig3b_rank_plots.png" alt="MCMC rank plots used to assess chain mixing" width="48%">
+</p>
+
+<p align="center">
+  <img src="figures/fig5_ppc.png" alt="Posterior predictive checks comparing predicted and observed precipitation distributions for each climate zone" width="48%">
+  <img src="figures/fig6_model_comparison.png" alt="LOO-IC comparison of null, one-change-point, and two-change-point models across climate zones" width="48%">
+</p>
+
+<p align="center"><em>Trace and rank plots assess MCMC quality; posterior predictive checks and LOO-IC compare model fit with the observed rainfall data.</em></p>
+
+#### Hierarchical model structure
+
+<p align="center">
+  <img src="figures/fig_model_diagram.png" alt="Kruschke-style probabilistic graphical model diagram for the hierarchical rainfall change-point model" width="70%">
+</p>
+
+<p align="center"><em>Probabilistic graphical model showing how zone-level change-points share information through the hierarchical structure.</em></p>
 
 ---
 
